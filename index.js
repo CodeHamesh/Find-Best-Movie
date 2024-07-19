@@ -83,11 +83,9 @@ app.post('/login', passport.authenticate('local', { failureRedirect: '/login' })
 });
 
 
-app.get('/logout',(req,res)=>{
+app.get('/logout',async(req,res)=>{
     req.logOut((err)=>{
-        if (err) {
-            throw new ExpressError(402, 'Some Error')
-        }
+        console.log(err);
     })
     
  return res.redirect('/movie')

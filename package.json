@@ -1,4 +1,9 @@
 {
+  
+    "engines": {
+     "node": "v20.11.1"
+    },
+  
   "name": "1st-proj-nodejs",
   "version": "1.0.0",
   "description": "",
