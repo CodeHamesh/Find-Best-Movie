@@ -36,7 +36,7 @@ app.use(session({
     store: MongoStore.create({
         mongoUrl: dbUrl,
         crypto:{
-            secret: 'hameshyadav'
+            secret: secretUrl
         },
         touchAfter: 24 * 3600
     })     ,
