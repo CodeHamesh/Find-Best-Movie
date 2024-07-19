@@ -2,12 +2,14 @@ const express = require('express');
 const app = express();
 const dotEnv = require('dotenv').config()
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/proj').then((result) => console.log('db connect')).catch((err) => console.log(err));
+let dbUrl = process.env.MONGO_URL
+mongoose.connect(dbUrl).then((result) => console.log('db connect')).catch((err) => console.log(err));
 const path = require('path');
 const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
 const ExpressError = require('./ExpressError.js');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 //Express-middelwares
 app.set('views', path.join(__dirname, "views"))
 app.use(express.urlencoded({ extended: true }))
@@ -26,9 +28,18 @@ const reviewRouter = require('./router/review.js');
 const passport = require('passport');
 const localPassport = require('passport-local')
 const User = require('./models/user.js');
+let secretUrl = process.env.secret
 app.use(session({
-    secret:'hameshyadav',
+    
+    secret:secretUrl,
     resave:false,
+    store: MongoStore.create({
+        mongoUrl: dbUrl,
+        crypto:{
+            secret: 'hameshyadav'
+        },
+        touchAfter: 24 * 3600
+    })     ,
     saveUninitialized: true,
     cookie:{maxAge:7 * 24 * 60 * 60 * 1000,httpOnly:true}
 }))
