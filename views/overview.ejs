@@ -1,0 +1,48 @@
+<% layout('./boilerplate/boilerplate.ejs') %>
+<body>
+    <div class="main">
+        <div class="left">
+            <div class="user">
+                <h1 class="userinfo"><%= findMovie.userinfo.username %></h1>
+            </div>
+            <div class="image">
+                <img src=<%= findMovie.image %>>
+            </div>
+            <div class="overviewtitle">
+                <h1><%= findMovie.title %></h1>
+            </div>
+            <div class="btns">
+                <% if ( userinfo && userinfo._id.equals(findMovie.userinfo._id)) {%>
+                    <form action="/movie/<%= findMovie._id %>/edit"  class="edit">
+                        <button>Edit</button>
+                    </form>
+                    <form  method="post" action="/movie/<%= findMovie._id %>/delete?_method=DELETE" class="delete">
+                        <button>Delete</button>
+                    </form>
+                <%} %>
+            </div>
+        </div>
+        
+        <div class="right">
+            <form action="/review/<%= findMovie._id %>" method="post" class="reviewinput">
+                <input type="text" placeholder="Your Review" name="review">
+                <button>Send</button>
+            </form>
+            <h1 class="reviewheading">Reviews:</h1>
+            <% findMovie.reviews.forEach((review)=>{%>
+
+                    <div class="reviews">
+                        <p class="userreview">   <span><%= review.author.username %></span> ||  <%= review.userreview %> </p>
+                        
+                <% if (userinfo._id.equals(review.author._id)) {%>
+                    <form action="/review/<%= findMovie._id %>/<%= review._id %>?_method=DELETE" method="post"><button class="deletes">D</button></form>
+               <% }%>
+                      </div>
+                
+               
+           <% }) %>
+
+        </div>
+    </div>
+
+</body>

@@ -1,0 +1,21 @@
+<nav class="nav">
+    <div class="navleft">
+        <a href="/movie"><span class="f">F</span><span class="b">B</span><span class="m">M</span>
+        </a>
+    </div>
+    <div class="navright">
+        <a href="/movie">home</a>
+        <a href="/movie/add">Add-New-Movie</a>
+
+    </div>
+      <div class="user">
+        <% if (!userinfo) {%>
+          <a href="/signup">SignUp</a>
+          <a href="/login">Login</a>
+       <% } %>
+       <% if (userinfo) {%>
+        <a href="/logout">LogOut</a>
+       <%} %>
+        
+      </div>
+</nav>

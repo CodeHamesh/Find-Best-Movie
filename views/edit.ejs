@@ -1,0 +1,11 @@
+<% layout('./boilerplate/boilerplate.ejs') %>
+<body>
+    <div class="addmovie">
+        <h1 class="addmovietitle">Edit-Movie</h1>
+        <form method="post" action="/movie/<%= findMovie._id %>/edit?_method=PATCH" >
+            <input type="text" name="image"  value=<%= findMovie.image %>>
+            <input type="text" name="title"  value=<%= findMovie.title %>>
+            <button>Edit</button>
+        </form>
+    </div>
+</body>

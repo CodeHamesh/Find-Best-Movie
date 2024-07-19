@@ -1,0 +1,12 @@
+<% layout('./boilerplate/boilerplate.ejs') %>
+<title><%= title %></title>
+<body>
+    <div class="addmovie">
+        <h1 class="addmovietitle">Add-Movie</h1>
+        <form action="/movie" method="post">
+            <input type="text" name="image" placeholder="image">
+            <input type="text" name="title" placeholder="title">
+            <button>Submit</button>
+        </form>
+    </div>
+</body>

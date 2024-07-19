@@ -1,0 +1,17 @@
+<% layout('./boilerplate/boilerplate.ejs') %>
+<title><%= title %></title>
+<body>
+ 
+  <div class="cards">
+    <% allMovie.forEach((movie)=>{%>
+       <a href="/movie/<%= movie._id %>/overview">
+        <div class="card">
+            <img src=<%= movie.image %> alt="#">
+            <div class="layer">
+            <h2><%= movie.title %></h2>
+            </div>
+        </div>
+       </a>
+    <%}) %>
+  </div>
+</body>
